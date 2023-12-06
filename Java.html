@@ -3,9 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Java</title>
 </head>
 <body>
-    
+    <h1>Java archive</h1>
+    <h4>today we were talking about array lists, that are similar to vectors in cpp, and now im creating the program with this new structure. 
+The difference between a built-in array and an ArrayList in Java, is that the size of an array cannot be modified (if you want to add or remove elements to/from an array, you have to create a new one). While elements can be added and removed from an ArrayList whenever you want. The syntax is also slightly different:
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+import java.util.ArrayList; // import the ArrayList class
+
+ArrayList<String> cars = new ArrayList<String>(); // Create an ArrayList object
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+in the diamond operator younneed to specify the type of the data (Integer, String, Float etc.). Also it has a lot of methods:
+ - size() - returns the size of the array
+ - add() - adds an element in the queue of the list, and in the parenthesis you insert the element that you need to add
+ - remove() - removes the specified element of the specified position
+ - isEmpty() - checks if the array is empty, in the parenthesis you can specify the index, so it will check if the specified cell is empty
+ - get() - returns the element of the specified cell of the array
+ - set() - modifies the existing element, it requires 2 parameters, the index and the new element that you eant ot insert in the array
+ - clear() - clears array
+ - getFirst() - returns first element of the array
+ - getLast() - return last element of the array
+ - contains() - returns true or false if array is containing the requested element or not
+ - indexOf() - returns the index of the requested element of the first element that satisfies the request (if there are multiple equal elements, it returns only the first one)
+ - 
+
+you can print the whole array without the for cycle, just write System.out.println(name_of_array);
+
+also, you can use /var/ for not specifying the type of the element, cuz var is ducktyping, like auto in cpp
+
+the for-each cycle
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+ //for i iteration cycle
+        for (int i=0;i<num.size();i++){
+            System.out.println(num.get(i));
+        }
+
+        //for each iteration cycle
+        for(var numero:num){//var is a sort of ducktyping, cuz it understands the type automatically, like auto in cpp
+            System.out.println(num);
+        }
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+basically it just makes the syntax more clear and professional</h4>
+            
 </body>
 </html>
