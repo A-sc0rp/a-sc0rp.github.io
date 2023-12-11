@@ -29,7 +29,8 @@ in the diamond operator younneed to specify the type of the data (Integer, Strin
  - getLast() - return last element of the array<br>
  - contains() - returns true or false if array is containing the requested element or not<br>
  - indexOf() - returns the index of the requested element of the first element that satisfies the request (if there are multiple equal elements, it returns only the first one)<br>
- - 
+ - removeIf() - removes an element depending on a specified condition //num.removeIf(numero -> numero%2 == 0)//lambda expression <br>
+this is used to substitute the for cycle to optimize the code. <br>
 <br>
 you can print the whole array without the for cycle, just write System.out.println(name_of_array);<br>
 <br>
@@ -49,7 +50,18 @@ the for-each cycle<br>
         }<br>
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''<br>
 <br>
-basically it just makes the syntax more clear and professional</h4>
+basically it just makes the syntax more clear and professional<br>
+<br>
+how to instantly add an element/s to an array list after creating it?<br>
+its easy, the only thing you need is to list your elements that u need to add it on the parenthesis like so:<br>
+<br>
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''<br>
+List<Integer> num = new ArrayList<>(List.of(//elements u need to add))<br>
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''<br>
+<br>
+its basically like in normal array when you pre-fill it, but instead u need to use the List.of() method<br>
+<br>
+Pro tip: the dynamic array does not contain cells with null value, so that when you erase an element from the d-array, all the adjiacent elements fill the "hole"</h4>
             
 </body>
 </html>
