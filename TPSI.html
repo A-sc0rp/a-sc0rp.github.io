@@ -1,1 +1,105 @@
 #file for tpsi
+<!DOCTYPE html>
+<html>
+<head>
+<title>//TPSI//</title>
+</head>
+
+<body>
+<h2>Unistd library, fork and the processes</h2>
+
+  <h4>additional info here-> https://www.man7.org/linux/man-pages/man0/unistd.h.0p.html<br>
+<br>
+pid is the process id<br>
+ppid is the parent process of the other process<br>
+fork() - creates a process<br>
+<br>
+getpid() returns the pid of the process<br>
+<br>
+getppid() returns the ppid of the process<br>
+<br>
+basically, from the code its possible to see that fork can create CP or PP; when the PID=0, that means that theproces is CP, otherwise its PP<br>
+<br>
+the program that i made simply prints the parent id and forks it, creating the child process and returning its pid. then its child process that is printing its pid and its ppid, then returns nothing cuz there was no fork<br>
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''<br>
+Un solo processo PID: 9573<br>
+Chiamata fork...<br>
+[GENITORE] PID = 9573, PPID = 3034<br>
+[GENITORE] la fork ha ritornato: 9574<br>
+PID 9573 termina <br>
+[FIGLIO] PID = 9574, PPID = 1<br>
+[FIGLIO] la fork ha ritornato: 0<br>
+PID 9574 termina<br>
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''<br>
+code<br>
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''<br>
+#include <unistd.h><br>
+#include <iostream><br>
+<br>
+using std::cin;<br>
+using std::cout;<br>
+using std::endl;<br>
+<br>
+int main(){<br>
+<br>
+	pid_t pid;<br>
+	 cout<<"Un solo processo PID: "<<getpid()<<endl;<br>
+	 cout<<"Chiamata fork..."<<endl;<br>
+<br>
+	 pid=fork();<br>
+<br>
+	 if(pid==-1){//errore<br>
+		cout<<"Fork non riuscita"<<endl;<br>
+		exit(EXIT_FAILURE);<br>
+	 }<br>
+	 if(pid==0){//processo figlio<br>
+		cout<<"[FIGLIO] PID = "<<getpid()<<", PPID = "<<getppid()<<endl;<br>
+		cout<<"[FIGLIO] la fork ha ritornato: "<<pid<<endl;<br>
+	 }<br>
+	 else {//processo genitore(pid>0)<br>
+		cout<<"[GENITORE] PID = "<<getpid()<<", PPID = "<<getppid()<<endl;<br>
+		cout<<"[GENITORE] la fork ha ritornato: "<<pid<<endl;<br>
+	 }<br>
+		//entrambi processi<br>
+	 cout<<"PID "<<getpid()<<" termina "<<endl;<br>
+<br>
+	<br>
+<br>
+<br>
+	return 0;<br>
+}<br>
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''<br>
+if you will launch it multiple times, the order of printing processes might be different<br>
+because the processes are independent, but also because it depends on the OS's scheduling algorithms. <br>
+<br>
+you can make sleep the process, using the sleep() function, as the parameter you need to pass the amount of seconds that the process need to sleep.<br>
+<br>
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''<br>
+if(pid==0){//processo figlio<br>
+		cout<<"[FIGLIO] PID = "<<getpid()<<", PPID = "<<getppid()<<endl;<br>
+		cout<<"[FIGLIO] la fork ha ritornato: "<<pid<<endl;<br>
+		sleep(10);<br>
+	 }<br>
+	 else {//processo genitore(pid>0)<br>
+		cout<<"[GENITORE] PID = "<<getpid()<<", PPID = "<<getppid()<<endl;<br>
+		cout<<"[GENITORE] la fork ha ritornato: "<<pid<<endl;<br>
+		//sleep(10);<br>
+	 }<br>
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''<br>
+a zombie process is a father proccess that has his child process terminated/finished<br>
+that happends when we decomment the sleep func for pid>0 option<br>
+<br>
+if a child process finishes before father process, it becomes orphan, so its ppid becomes 1, so he becomes "adopted" XD.<br>
+<br>
+when we put fork() in the loop, it forks repeteatly the processes, but the forked process calls not only one child process, but also the child process of the child process, so it  grows like a tree in a geometrical progression.<br>
+<br>
+every father process can make more that 1 child process. this is called multiforking. basically from every father process we can reconstruct all his child processes and the child processes of his child processes, basically the whole geneologic tree. <br>
+<br>
+there is also a function silmilar to sleep, its wait(). <br>
+to include this func, you need to include the sys/wait.h library. this process blocks every porcess. <br>there is also the waitpid() function that blocks only the process with the specified pid. ths func wait() blocks the process untill the other porcess is finished. <br>you need the wstatus variable, that the wait() function will use. the wstatus acieves the value from the EXIT_STATUS, that means that wait func blocks the process till the other one is not finished. <br>to control if the porcess is exited, you need to use method WIFEXITED(), to know if the someone has send some signals, you need to use the WIFSIGNALED() method. <br>WEXITSTATUS() is a method reads the wstatus cuz its inserted as a puntatore(&wstatus->wstatus).<br> 
+</h4>
+      
+  
+</body>
+
+</html> 
