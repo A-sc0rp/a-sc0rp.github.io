@@ -6,9 +6,9 @@
 </head>
 
 <body>
-<h2>Unistd library, fork and the processes</h2>
+<h1>Unistd library, fork and the processes</h1>
 
-  <h4>additional info here-> https://www.man7.org/linux/man-pages/man0/unistd.h.0p.html<br>
+  <h2>additional info here-> https://www.man7.org/linux/man-pages/man0/unistd.h.0p.html<br>
 <br>
 pid is the process id<br>
 ppid is the parent process of the other process<br>
@@ -97,7 +97,7 @@ every father process can make more that 1 child process. this is called multifor
 <br>
 there is also a function silmilar to sleep, its wait(). <br>
 to include this func, you need to include the sys/wait.h library. this process blocks every porcess. <br>there is also the waitpid() function that blocks only the process with the specified pid. ths func wait() blocks the process untill the other porcess is finished. <br>you need the wstatus variable, that the wait() function will use. the wstatus acieves the value from the EXIT_STATUS, that means that wait func blocks the process till the other one is not finished. <br>to control if the porcess is exited, you need to use method WIFEXITED(), to know if the someone has send some signals, you need to use the WIFSIGNALED() method. <br>WEXITSTATUS() is a method reads the wstatus cuz its inserted as a puntatore(&wstatus->wstatus).<br> 
-</h4>
+</h2>
       
   
 </body>
